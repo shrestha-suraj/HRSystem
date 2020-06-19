@@ -4,17 +4,22 @@ import java.util.List;
 
 public class Employee {
 	
-	// Class variables
+	// Class variables (Immutable variable getters only)
 	private int id;
 	private String firstName;
 	private String lastName;
 	
-	// Other added variables
+	// Other added variables (These variables are mutable)
 	private Phone phone;
 	private Address address;
 	private List<Role> roles;
-	// Constructors
 	
+	// Constructor
+	public Employee(int id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 	
 	
 	// Getters and setters
@@ -23,6 +28,7 @@ public class Employee {
 	public Address getAddress() {
 		return address;
 	}
+	
 	public void setAddress(Address address) {
 		this.address = address;
 	}	
@@ -33,6 +39,8 @@ public class Employee {
 	public void setPhone(Phone phone) {
 		this.phone = phone;
 	}
+	
+	// Roles getters and setters
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -40,14 +48,20 @@ public class Employee {
 		this.roles = roles;
 	}
 	
+	
+	// Immutable variable getters ONLY
+	
+	// Id getter
 	public int getId() {
 		return id;
 	}
 
+	// First name getter
 	public String getFirstName() {
 		return firstName;
 	}
 
+	// Last name getter
 	public String getLastName() {
 		return lastName;
 	}
