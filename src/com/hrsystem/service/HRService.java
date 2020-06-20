@@ -66,7 +66,7 @@ public class HRService {
 	
 	// Adding new company to the HRSystem
 	public void addCompany(Company company) throws Exception {
-		if(db.get(company.getId())!=null) {
+		if(db.get(company.getId())==null) {
 			db.put(company.getId(), company);
 		}else {
 			throw new Exception("Company Id is taken. Try Again!\n");
