@@ -1,7 +1,7 @@
 package com.hrsystem.service;
 
 import static org.junit.Assert.assertEquals;
-
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.hrsystem.domain.*;
@@ -12,18 +12,40 @@ public class HRServiceTests {
 	private HRService hrService;
 	
 	@BeforeEach
-	public void setup() {
+	public void setup() throws Exception {
 		hrService=new HRService();
+		hrService.addCompany(new Company(123,"Test Company",null));
 	}
 	
 	
 	@Test
-	public void testAddEmployee() {
-		Employee employee=EmployeeFixture.createEmployee();
-		employee.setPhone(PhoneFixture.createPhone());
-		employee.setRoles(RoleFixture.createRoles());
-		hrService.addEmployee(employee);
-		Employee searchedEmployee =hrService.search(1);
+	public void testAddEmployee() throws Exception {
+		Employee employee=ContractorFixture.createContractor();
+		hrService.addEmployee(123,employee);
+		Employee searchedEmployee =hrService.searchEmployee(123, 1);
+		assertEquals(searchedEmployee.getFirstName(),employee.getFirstName());
+	}
+	@Test
+	public void testRemoveEmployee() throws Exception{
+		Employee employee=FullTimeFixture.createFullTime();
+		hrService.addEmployee(123,employee);
+		hrService.removeEmployee(123, 1);
+		Employee searchedEmployee =hrService.searchEmployee(123, 1);
+		assertEquals(searchedEmployee,null);
+	}
+	@Test
+	public void testSearchEmployeeByName() throws Exception {
+		Employee employee=ContractorFixture.createContractor();
+		hrService.addEmployee(123,employee);
+		List<Employee> searchedEmployee =hrService.searchEmployees(123, "Suraj", "Shrestha");
+		assertEquals(searchedEmployee.get(0).getFirstName(),employee.getFirstName());
+	}
+	
+	@Test
+	public void testSearchEmployeeyId() throws Exception{
+		Employee employee=FullTimeFixture.createFullTime();
+		hrService.addEmployee(123,employee);
+		Employee searchedEmployee =hrService.searchEmployee(123, 1);
 		assertEquals(searchedEmployee.getFirstName(),employee.getFirstName());
 	}
 }

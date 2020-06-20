@@ -69,7 +69,7 @@ public class HRClient {
 						System.out.print("Enter employee full name: ");
 						String[] empName = keyboard.nextLine().split(" ");
 						System.out.print("How many roles you want to register for the employee?\nEnter a number: ");
-						int rolesNumber=keyboard.nextInt();
+						int rolesNumber = keyboard.nextInt();
 						keyboard.nextLine();
 						List<Role> roles = new ArrayList<Role>();
 						for (int i = 0; i < rolesNumber; i++) {
@@ -91,18 +91,24 @@ public class HRClient {
 							System.out.println(
 									"Enter contractor information i.e. StartDate EndDate and HourlySalary, Format: YYYY/MM/DD YYYY/MM/DD SalaryPerHr");
 							String[] contractorToken = keyboard.nextLine().split(" ");
-							String[] startDate=contractorToken[0].split("/");
-							String[] endDate=contractorToken[1].split("/");
-							employee = new Contractor(new DateTime(Integer.parseInt(startDate[0]),Integer.parseInt(startDate[1]),Integer.parseInt(startDate[2]),0,0),
-									new DateTime(Integer.parseInt(endDate[0]),Integer.parseInt(endDate[1]),Integer.parseInt(endDate[2]),0,0), Float.parseFloat(contractorToken[2]),
-									new Employee(empId, empName[0], empName[1]));
+							String[] startDate = contractorToken[0].split("/");
+							String[] endDate = contractorToken[1].split("/");
+							employee = new Contractor(
+									new DateTime(Integer.parseInt(startDate[0]), Integer.parseInt(startDate[1]),
+											Integer.parseInt(startDate[2]), 0, 0),
+									new DateTime(Integer.parseInt(endDate[0]), Integer.parseInt(endDate[1]),
+											Integer.parseInt(endDate[2]), 0, 0),
+									Float.parseFloat(contractorToken[2]), new Employee(empId, empName[0], empName[1]));
 						} else {
 							System.out.println(
 									"Enter FullTime employee information i.e. StartDate SalaryPerYear and BonusPerYear, Format: YYYY/MM/DD YearlySalary YearlyBonus");
 							String[] fulltimeToken = keyboard.nextLine().split(" ");
-							String[] startDate=fulltimeToken[0].split("/");
-							employee = new FullTime(new DateTime(Integer.parseInt(startDate[0]),Integer.parseInt(startDate[1]),Integer.parseInt(startDate[2]),0,0), Float.parseFloat(fulltimeToken[1]),
-									Float.parseFloat(fulltimeToken[2]), new Employee(empId, empName[0], empName[1]));
+							String[] startDate = fulltimeToken[0].split("/");
+							employee = new FullTime(
+									new DateTime(Integer.parseInt(startDate[0]), Integer.parseInt(startDate[1]),
+											Integer.parseInt(startDate[2]), 0, 0),
+									Float.parseFloat(fulltimeToken[1]), Float.parseFloat(fulltimeToken[2]),
+									new Employee(empId, empName[0], empName[1]));
 						}
 						employee.setRoles(roles);
 						employee.setPhone(empPhone);
@@ -157,5 +163,6 @@ public class HRClient {
 
 		} while (runProgram);
 		System.out.println("Thank You for using the program");
+		keyboard.close();
 	}
 }
