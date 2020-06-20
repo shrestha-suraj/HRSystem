@@ -17,7 +17,10 @@ public class HRService {
 	// Adding employee to specific company
 	public void addEmployee(int companyId, Employee employee) throws Exception{
 		Company company=db.get(companyId);
-		if(company.getEmployees().get(employee.getId())==null) {
+		if(company==null) {
+			throw new Exception("Company doesnot exist.");
+		}
+		else if(company.getEmployees().get(employee.getId())==null) {
 			company.addEmployee(employee);
 		}else {
 			throw new Exception("Id duplication occured.");
@@ -27,7 +30,10 @@ public class HRService {
 	//Removing employee from the company on basis of employeeId
 	public void removeEmployee(int companyId, int employeeId) throws Exception {
 		Company company=db.get(companyId);
-		if(company.getEmployees().get(employeeId)!=null) {
+		if(company==null) {
+			throw new Exception("Company doesnot exist.");
+		}
+		else if(company.getEmployees().get(employeeId)!=null) {
 			company.removeEmployee(employeeId);
 		}else {
 			throw new Exception("Employee doesnot exist in Company.");
@@ -65,6 +71,11 @@ public class HRService {
 		}else {
 			throw new Exception("Company Id is taken. Try Again!\n");
 		}
+	}
+	
+	//Getting company information to HRSystem
+	public boolean companyExists(int companyId) {
+		return db.get(companyId)!=null;
 	}
 	
 	

@@ -1,18 +1,13 @@
 package com.hrsystem.domain;
 
 public class Phone {
-	private int id;
 	private String areaCode;
 	private String number;
 	private String countryCode;
-	public Phone(int id, String areaCode, String number, String countryCode) {
-		this.id = id;
+	public Phone(String areaCode, String number, String countryCode) {
 		this.areaCode = areaCode;
 		this.number = number;
 		this.countryCode = countryCode;
-	}
-	public int getId() {
-		return id;
 	}
 	public String getAreaCode() {
 		return areaCode;
