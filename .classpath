@@ -8,6 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="/home/suraj/Desktop/Software/jar-library/joda-time-2.10.6.jar"/>
+	<classpathentry kind="lib" path="/home/suraj/eclipse-workspace/HRSystem/lib/joda-time-2.10.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
